@@ -10,9 +10,14 @@ import {CoursesService} from '../courses.service';
 export class CoursesComponent implements OnInit {
   title = "The title of courses page";
   courses;
-  
-  constructor(cs: CoursesService) {
+  myVal: string;
+  constructor(private cs: CoursesService) {
     this.courses = cs.getCourses();
+  }
+  
+  save(){
+    this.cs.saveCourse(this.myVal);
+    this.courses = this.cs.getCourses();
   }
 
   ngOnInit() {
